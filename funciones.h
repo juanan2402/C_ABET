@@ -1,5 +1,4 @@
-#ifndef FUNCIONES_H_INCLUDED
-#define FUNCIONES_H_INCLUDED
+
 #include "funciones.c"
 
 void Menu();
@@ -10,4 +9,3 @@ int IngresoPersonas(struct personas per[100], int numPer);
 void despacho(struct medicamento med[100], int numMed, struct personas per[100], int numPer);
 int comprobarCodigo(struct medicamento med[100], int numMed, int codigo);
 int comprobarCedula(struct personas per[100], int numPer, int cedula);
-#endif // FUNCIONES_H_INCLUDED
