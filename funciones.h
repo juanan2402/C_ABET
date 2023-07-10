@@ -1,15 +1,13 @@
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
 #include "funciones.c"
-struct med{
-  char nombre[100];
-  int codigo;
-  int lote;
-  int cantidadIndividual;
-  int cantidadPorCajas;
 
-}
-void ticket_de_recibo();
-void creacion_de_producto();
-void creacion_de_cliente();
-void transaccion_entrada();
-void transaccion_salida();
-int existe_producto();
+void Menu();
+void Inventario(struct medicamento meds[100], int numMeds);
+int IngresoProductos(struct medicamento med[100], int numMed);
+void Personas(struct personas per[100], int numPer);
+int IngresoPersonas(struct personas per[100], int numPer);
+void despacho(struct medicamento med[100], int numMed, struct personas per[100], int numPer);
+int comprobarCodigo(struct medicamento med[100], int numMed, int codigo);
+int comprobarCedula(struct personas per[100], int numPer, int cedula);
+#endif // FUNCIONES_H_INCLUDED
