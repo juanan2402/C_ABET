@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include "Menu.h"
 #include "Entrada.h"
+#include "funciones.h"
 
 int main(){ 
     char clientes[100][100];
