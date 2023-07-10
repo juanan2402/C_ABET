@@ -4,6 +4,7 @@
 
 int main(){ 
     char clientes[100][100];
+    char meds[100][100];
     //File Creation
     FILE *clientes;
     FILE *mediamentos;

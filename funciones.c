@@ -11,7 +11,7 @@ int existe_producto(){
 void creacion_de_producto(char productos []){
     FILE *medicamentos;
     medicamentos = fopen("medicamentos.txt", "r+");
-    int numMed, lote, cantidadIndividual, cantidadCajas;
+    int numMed, lote, cantidadIndividual, cantidadCajas, pos;
     char nombre[50];
     do {
     printf("Ingrese el nombre del medicamento:\n");
@@ -20,11 +20,11 @@ void creacion_de_producto(char productos []){
 
     }
     printf("Ingrese el lote:\n");
-    scanf("%d",&nombre);
+    scanf("%d",&lote);
     printf("Ingrese la cantidad individual recibida:\n");
-    scanf("%d",&nombre);
+    scanf("%d",&cantidadIndividual);
     printf("Ingrese la cantidad de medicamentos por caja:\n");
-    scanf("%d",&nombre);
+    scanf("%d",&cantidadCajas);
         numMed++;
         fprintf(medicamentos, "%d %s \n", numMed nombre);
     }
@@ -43,4 +43,21 @@ void transaccion_entrada(){
 }
 void transaccion_salida(){
 
+}
+
+void vectorMeds(char meds[][100], int numMed){
+    FILE *medicamentos;
+    medicamentos= fopen("medicamentos.txt", "r+");
+    
+    if (medicamentos == NULL)
+    {
+        printf("No se puede leer el archivo\n");
+    }else
+    {
+        for(int i=0; i<numMed; i++){
+            fscanf(medicamentos, "%s",meds[i]);
+        }
+        fclose(medicamentos);
+    }  
+    
 }
