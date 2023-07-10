@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "archivos.h"
-#include "funciones.h"
 int main()
 {
     int opcion=0;

@@ -159,8 +159,6 @@ void despacho(struct medicamento med[100], int numMed, struct personas per[100],
         }
         else{
             IngresoPersonas(per, numPer);
-            printf("Usuario registrado, ingrese nuevamente para registrar su entrega\n");
-            guardarPersonas(per, numPer);
         }
 
 
