@@ -4,6 +4,7 @@
 #include "funciones.h"
 
 int main(){ 
+    struct med medicinas[100]
     char clientes[100][100];
     char meds[100][100];
     //File Creation
