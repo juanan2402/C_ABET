@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include "funciones.h"
+
 int cargarMedicamentos(struct medicamento meds[100]){
     int numMeds=0;
     FILE *inv;
