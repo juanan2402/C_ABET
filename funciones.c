@@ -1,19 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include "estructuras.h"
 
-
-struct medicamento{
-    char nombre[100];
-    int codigo;
-    int lote;
-    int unidades;
-    int unidadesxCaja;
-};
-struct personas{
-
-    char nombre[100];
-    int cedula;
-};
 int comprobarCodigo(struct medicamento med[100], int numMed, int codigo);
 int comprobarCedula(struct personas per[100], int numPer, int cedula);
 void modificarCantidades(struct medicamento med[100], int numMed, int codigo);
@@ -29,6 +17,7 @@ void Menu () {
         printf("*********************************\n\n");
 
 }
+
 void Inventario(struct medicamento meds[100], int numMeds){
     for (int i=0; i<numMeds; i++){
         printf("Nombre: %s\n", meds[i].nombre);
@@ -41,6 +30,7 @@ void Inventario(struct medicamento meds[100], int numMeds){
     }
 
 }
+
 void Personas(struct personas per[100], int numPer){
     for (int i=0; i<numPer; i++){
         printf("Nombre: %s\n", per[i].nombre);

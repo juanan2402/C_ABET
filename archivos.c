@@ -1,8 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "funciones.h"
-
+#include "funciones.h"/*
+void CrearArchivos(char nombrearchivo[]){
+    FILE *f;
+    f = fopen(nombrearchivo, "w+");
+    if (f == NULL)
+    {
+        printf("No se puede crear el archivo\n");
+    }else
+    {
+        printf("Se ha creado el archivo %s\n", nombrearchivo);
+        fclose(f);
+    } 
+}
+*/
 int cargarMedicamentos(struct medicamento meds[100]){
     int numMeds=0;
     FILE *inv;
