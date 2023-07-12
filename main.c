@@ -11,11 +11,10 @@ int main()
     
     int numMed=0;
     int numPer=0;
-    
+
     numMed=cargarMedicamentos(med);
     numPer=cargarPersonas(per);
-    
-    printf("Ingresar el anio actual\n");
+    printf("Bienvenido al sistema de inventario automatico! por favor ingrese el anio actual:\n");  
     scanf("%d", &anio);
     do{
         Menu();
