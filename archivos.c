@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include "funciones.h"
-
+//cargar functions read information from the respective files and stores it into struct arrays for internal use
 int cargarMedicamentos(struct medicamento meds[100]){
     int numMed = 0;
     FILE *f;
@@ -43,6 +43,7 @@ int cargarMedicamentos(struct medicamento meds[100]){
 
     }
     fclose(f);
+    //returns how many medicines are stored, for laer use in for loops and other control structures
     return numMed;
 }
 int cargarPersonas(struct personas pers[100]){
@@ -78,7 +79,7 @@ int cargarPersonas(struct personas pers[100]){
     fclose(f);
     return numPer;
 }
-
+//Guardar functions reverse the process of cargar, they take the struct array and store data for each struct into a line, separating the information with ; 
 void guardarMedicamentos(struct medicamento med[100], int numMed){
     FILE *f;
     f = fopen("Medicamentos.txt","w");

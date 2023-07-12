@@ -11,14 +11,17 @@ int main()
     
     int numMed=0;
     int numPer=0;
-
+//store in local structs the values of the files, for easier processing
     numMed=cargarMedicamentos(med);
     numPer=cargarPersonas(per);
-    printf("Bienvenido al sistema de inventario automatico! por favor ingrese el anio actual:\n");  
+
+    printf("Bienvenido al sistema de inventario automatico! por favor ingrese el anio actual:\n"); 
+    //We ask for a year so we can determine if the products are still within consuming range 
     scanf("%d", &anio);
     do{
         Menu();
         scanf("%d", &opcion);
+       // menu switch, based on functions from funciones.c
         switch(opcion){
         case 1:
             printf("Orden de ingreso\n");
@@ -54,6 +57,8 @@ int main()
             break;
         }
     }while(opcion!=5);
+    
+    //The structs are stored into the files again, saving the changes made
     guardarMedicamentos(med, numMed);
     guardarPersonas(per, numPer);
     printf("GRACIAS POR SU TRANSACCION, QUE LE VAYA MUY BIEN!\n\n");
