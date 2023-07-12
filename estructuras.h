@@ -4,7 +4,7 @@
 struct medicamento{
     char nombre[50];
     int codigo;
-    int lote;
+    int anio;
     int unidades;
     int unidadesxCaja;
 };

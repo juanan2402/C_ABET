@@ -1,122 +1,103 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "funciones.h"/*
-void CrearArchivos(char nombrearchivo[]){
-    FILE *f;
-    f = fopen(nombrearchivo, "w+");
-    if (f == NULL)
-    {
-        printf("No se puede crear el archivo\n");
-    }else
-    {
-        printf("Se ha creado el archivo %s\n", nombrearchivo);
-        fclose(f);
-    } 
-}
-*/
+#include "funciones.h"
+
 int cargarMedicamentos(struct medicamento meds[100]){
-    int numMeds=0;
-    FILE *inv;
-    inv=fopen("Medicamentos.txt", "r");
+    int numMed = 0;
+    FILE *f;
+    f = fopen("Medicamentos.txt","r");
     char cadena[255];
-    char separador[]=";";
+    char separador[] = ";";
 
-    while(feof(inv)==0){
+    while (feof(f) == 0){
+
         struct medicamento m;
-        fgets(cadena, 255, inv);
-        char *token = strtok(cadena, separador);
+        fgets(cadena,255,f);
+        char *token = strtok(cadena,separador);
 
-        if (token!=NULL){
-            int espacio=1;
-            while(token!=NULL){
-                if(espacio==1){
-                    strcpy(m.nombre, token);
-
+        if(token != NULL){
+            int campo = 1;
+            while (token != NULL){
+                if (campo == 1){
+                    strcpy(m.nombre,token);
                 }
-                else if(espacio==2){
-                    m.codigo=atoi(token);
-
+                else if(campo == 2){
+                    m.codigo = atoi(token);
                 }
-                else if(espacio==3){
-                    m.lote=atoi(token);
-
+                else if(campo == 3){
+                    m.anio = atoi(token);
                 }
-                else if(espacio==4){
-                    m.unidades=atoi(token);
-
+                else if(campo == 4){
+                    m.unidades = atoi(token);
                 }
-                else if(espacio==5){
-                    m.unidadesxCaja=atoi(token);
-
+                else if(campo == 5){
+                    m.unidadesxCaja = atoi(token);
                 }
-                espacio++;
-                token=strtok(NULL, separador);
-
+                campo++;
+                token = strtok(NULL, separador);
             }
         }
-        meds[numMeds]=m;
-        numMeds++;
+        meds[numMed] = m;
+        numMed++;
 
     }
-    fclose(inv);
-    return(numMeds);
+    fclose(f);
+    return numMed;
 }
 int cargarPersonas(struct personas pers[100]){
-    int numPer=0;
-    FILE *per;
-    per=fopen("Personas.txt", "r");
+    int numPer = 0;
+    FILE *f;
+    f = fopen("Personas.txt","r");
     char cadena[255];
-    char separador[]=";";
+    char separador[] = ";";
 
-    while(feof(per)==0){
+    while (feof(f) == 0){
+
         struct personas p;
-        fgets(cadena, 255, per);
-        char *token = strtok(cadena, separador);
+        fgets(cadena,255,f);
+        char *token = strtok(cadena,separador);
 
-        if (token!=NULL){
-            int espacio=1;
-            while(token!=NULL){
-                if(espacio==1){
-                    strcpy(p.nombre, token);
-
+        if(token != NULL){
+            int campo = 1;
+            while (token != NULL){
+                if (campo == 1){
+                    strcpy(p.nombre,token);
                 }
-                else if(espacio==2){
-                    p.cedula=atoi(token);
-
+                else if(campo == 2){
+                    p.cedula = atoi(token);
                 }
-
-                espacio++;
-                token=strtok(NULL, separador);
-
+                campo++;
+                token = strtok(NULL, separador);
             }
         }
-        pers[numPer]=p;
+        pers[numPer] = p;
         numPer++;
 
     }
-    fclose(per);
-    return(numPer);
+    fclose(f);
+    return numPer;
 }
-void guardarMedicamentos(struct medicamento meds[100], int numMed){
+
+void guardarMedicamentos(struct medicamento med[100], int numMed){
     FILE *f;
-    f = fopen("medicamentos.txt","w+");
+    f = fopen("Medicamentos.txt","w");
 
     for (int i=0; i<numMed-1; i++){
-        fprintf(f, "%s;%d;%d;%d;%d\n",meds[i].nombre,meds[i].codigo,meds[i].lote,meds[i].unidades, meds[i].unidadesxCaja);
+        fprintf(f, "%s;%d;%d;%d;%d\n",med[i].nombre,med[i].codigo,med[i].anio,med[i].unidades, med[i].unidadesxCaja);
     }
-    fprintf(f, "%s;%d;%d;%d;%d\n",meds[numMed-1].nombre,meds[numMed-1].codigo,meds[numMed-1].lote,meds[numMed-1].unidades, meds[numMed-1].unidadesxCaja);
+    fprintf(f, "%s;%d;%d;%d;%d",med[numMed-1].nombre,med[numMed-1].codigo,med[numMed-1].anio,med[numMed-1].unidades, med[numMed-1].unidadesxCaja);
 
     fclose(f);
 }
-void guardarPersonas(struct personas per[100], int numPer){
-    FILE *f;
-    f = fopen("Personas.txt","w+");
 
-    for (int i=0; i<numPer-1; i++){
+void guardarPersonas(struct personas per[100], int num){
+    FILE *f;
+    f = fopen("Personas.txt","w");
+
+    for (int i=0; i<num-1; i++){
         fprintf(f, "%s;%d\n",per[i].nombre,per[i].cedula);
     }
-    fprintf(f, "%s;%d\n",per[numPer-1].nombre,per[numPer-1].cedula);
-
+    fprintf(f, "%s;%d",per[num-1].nombre,per[num-1].cedula);
     fclose(f);
 }

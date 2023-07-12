@@ -5,51 +5,58 @@
 
 int main()
 {
-    int opcion=0;
+    int opcion=0, anio;
+    struct medicamento med[100];
+    struct personas per[100];
+    
     int numMed=0;
     int numPer=0;
-    //CrearArchivos("Medicamentos.txt");
-    //CrearArchivos("Personas.txt");
-    //CrearArchivos("Facturas.txt");
-    struct medicamento meds[100];
-    struct personas pers[100];
-    numMed=cargarMedicamentos(meds);
-    numPer=cargarPersonas(pers);
-
+    
+    numMed=cargarMedicamentos(med);
+    numPer=cargarPersonas(per);
+    
+    printf("Ingresar el anio actual\n");
+    scanf("%d", &anio);
     do{
         Menu();
         scanf("%d", &opcion);
         switch(opcion){
         case 1:
-        
-        printf("Orden de ingreso\n");
-            int creado=IngresoProductos(meds, numMed);
-            if(creado==1){
-                numMed++;
+            printf("Orden de ingreso\n");
+            int nuevo=SumarCantidades(med, numMed);
+            if(!nuevo){
+                int creado = IngresarProductosNuevos(med, numMed);
+                if (creado == 1){
+                    numMed++;
+                }
+
             }
-        
             
             break;
         case 2:
-        
             printf("Orden de despacho\n");
-            despacho(meds, numMed, pers, numPer);
+            int nuevaP=despacho(med, numMed, per, numPer);
+            if(!nuevaP){
+                int creado = IngresarPersonasNuevas(per, numPer);
+                if (creado == 1){
+                    numPer++;
+                }
+
+            }
             break;
         case 3:
             printf("INVENTARIO: \n");
-            
-            Inventario(meds, numMed);
+            inventario(med, numMed, anio);
             break;
 
         case 4:
             printf("Listado Personas: \n");
-            
-            Personas(pers, numPer);
+            listadoPersonas(per, numPer);
             break;
         }
     }while(opcion!=5);
-    guardarMedicamentos(meds, numMed);
-    guardarPersonas(pers, numPer);
+    guardarMedicamentos(med, numMed);
+    guardarPersonas(per, numPer);
     printf("GRACIAS POR SU TRANSACCION, QUE LE VAYA MUY BIEN!\n\n");
     return 0;
 }
